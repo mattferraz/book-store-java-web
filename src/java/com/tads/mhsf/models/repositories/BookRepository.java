@@ -16,9 +16,11 @@ import java.util.List;
 public class BookRepository {
     
     private static final List<Book> books = new ArrayList<>();
+    private static int currentId = 1;
     
     
     public static void addBook(Book book) {
+        book.setId(currentId++);
         books.add(book);
     }
     
