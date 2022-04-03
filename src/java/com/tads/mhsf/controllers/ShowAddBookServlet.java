@@ -41,7 +41,7 @@ public class ShowAddBookServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Register a new book</h1>");
-            out.println("<form method='post' action='PerformAddBookServlet'><br>");
+            out.println("<form method='post' action='PerformAddBookServlet'>");
             out.println("Title: <input type='text' name='title'><br>");
             out.println("Description: <input type='text' name='description'><br>");
             out.println("Author: <input type='text' name='author'><br>");

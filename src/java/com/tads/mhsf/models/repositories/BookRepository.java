@@ -34,9 +34,9 @@ public class BookRepository {
     }
     
     public static void editBook(Book updatedBook) {
-        for (Book book : books) {
-            if (book.getId() == updatedBook.getId()) {
-                book = updatedBook;
+        for (int index = 0; index < books.size(); index++) {
+            if (books.get(index).getId() == updatedBook.getId()) {
+                books.set(index, updatedBook);
                 break;
             }
         }

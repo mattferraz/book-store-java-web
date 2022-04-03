@@ -45,6 +45,7 @@ public class RegisteredBooksServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Registered Books</h1>");
+            out.println("<a href='ShowAddBookServlet'>Add a new book</a>");
             out.println("<table border='1'>");
             out.print("<tr>");
             out.print("<th>Title</th>");
@@ -61,11 +62,11 @@ public class RegisteredBooksServlet extends HttpServlet {
                 out.println("<td>" + book.getAvailableCopies()+ "</td>");
                 out.println("<td>R$" + book.getPrice()+ "</td>");
                 out.println("<td>");
-                out.println("<a href='ShowBookDetailsServlet?id='" 
+                out.println("<a href='PerformReadBookServlet?id=" 
                         + book.getId() + "'>Details</a>");
                 out.println("<a href='ShowEditBookServlet?id=" 
                         + book.getId() + "'>Edit</a>");
-                out.println("<a href='DeleteBookServlet?id=" 
+                out.println("<a href='PerformDeleteBookServlet?id=" 
                         + book.getId() + "'>Delete</a>");
                 out.println("</td>");
                 out.println("</tr>");

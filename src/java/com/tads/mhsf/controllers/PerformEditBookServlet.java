@@ -40,11 +40,8 @@ public class PerformEditBookServlet extends HttpServlet {
         final int copies = Integer.parseInt(request.getParameter("copies"));
         
         Book updatedBook = new Book(title, description, author, price, copies);
-        
         updatedBook.setId(id);
-        
         BookRepository.editBook(updatedBook);
-        
         
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
@@ -52,7 +49,7 @@ public class PerformEditBookServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet PerformEditBook</title>");            
+            out.println("<title>Servlet PerformEditBookServlet</title>");            
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Book edited successfully!</h1>");

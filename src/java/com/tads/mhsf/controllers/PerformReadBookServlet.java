@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 package com.tads.mhsf.controllers;
+
 import com.tads.mhsf.models.business.Book;
 import com.tads.mhsf.models.repositories.BookRepository;
 import jakarta.servlet.ServletException;
@@ -13,13 +14,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-
 /**
  *
  * @author mtshs
  */
-@WebServlet(name = "ShowEditBookServlet", urlPatterns = {"/ShowEditBookServlet"})
-public class ShowEditBookServlet extends HttpServlet {
+@WebServlet(name = "PerformReadBookServlet", urlPatterns = {"/PerformReadBookServlet"})
+public class PerformReadBookServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,7 +33,8 @@ public class ShowEditBookServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        Book currentBook = BookRepository.getBook(Integer.parseInt(request.getParameter("id")));
+        int id = Integer.parseInt(request.getParameter("id"));
+        Book selectedBook = BookRepository.getBook(id);
         
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
@@ -41,19 +42,14 @@ public class ShowEditBookServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ShowEditBookServlet</title>");            
+            out.println("<title>Servlet PerformReadBookServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Edit Book</h1>");
-            out.println("<form method='post' action='PerformEditBookServlet'>");
-            out.println("<input type='hidden' name='id' value='"+ currentBook.getId() + "'><br>");
-            out.println("Title: <input type='text' name='title' value='"+ currentBook.getTitle() + "'><br>");
-            out.println("Description: <input type='text' name='description' value='"+ currentBook.getDescription() + "'><br>");
-            out.println("Author: <input type='text' name='author' value='"+ currentBook.getAuthor() + "'><br>");
-            out.println("Price: <input type='text' name='price' value='"+ currentBook.getPrice() + "'><br>");
-            out.println("Copies: <input type='text' name='copies' value='"+ currentBook.getAvailableCopies()+ "'><br>");
-            out.println("<input type='submit' value='Save'>");
-            out.println("</form>");
+            out.println("<h1>" + selectedBook.getTitle() + "</h1>");
+            out.println("<a href='RegisteredBooksServlet'>"
+                    + "Show registered books</a><br>");
+            out.println("<p>Author: " + selectedBook.getAuthor() + "</p>");
+            out.println("<p>" + selectedBook.getDescription() + "</p>");
             out.println("</body>");
             out.println("</html>");
         }
